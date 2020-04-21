@@ -22,7 +22,45 @@
         const game = createGame(stage);
         const keyboardListener = createKeyboardListener(document);
 
-        const currentPlayerId = 'teste';
-        render(stage, game, requestAnimationFrame, currentPlayerId);
+        const socket = io();
+
+        socket.on('connect', () => {
+            const currentPlayerId = socket.id;
+            render(stage, game, requestAnimationFrame, currentPlayerId);
+        })
+
+        socket.on('setup', (state) => {
+            const currentPlayerId = socket.id;
+            game.setState(state)
+
+            keyboardListener.setCurrentPlayerId(currentPlayerId)
+            keyboardListener.subscribe(game.movePlayer)
+            keyboardListener.subscribe((command) => {
+                socket.emit('move-player', command)
+            })
+        })
+
+        socket.on('add-player', (command) => {
+            game.addPlayer(command)
+        })
+
+        socket.on('remove-player', (command) => {
+            game.removePlayer(command)
+        })
+
+        socket.on('move-player', (command) => {
+            const currentPlayerId = socket.id;
+            if(currentPlayerId !== command.playerId) {
+                game.movePlayer(command)
+            }
+        })
+
+        socket.on('add-fruit', (command) => {
+            game.addFruit(command)
+        })
+
+        socket.on('remove-fruit', (command) => {
+            game.removeFruit(command)
+        })
     </script>
 </html>

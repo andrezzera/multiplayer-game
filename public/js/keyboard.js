@@ -5,7 +5,7 @@ export default function createKeyBorardListener(document) {
         observers: []
     }
 
-    function setPlayerId(playerId) {
+    function setCurrentPlayerId(playerId) {
         state.playerId = playerId
     }
 
@@ -14,7 +14,7 @@ export default function createKeyBorardListener(document) {
     }
 
     function notifyAll(command) {
-        for(const observerFunction in state.observers) {            
+        for(const observerFunction of state.observers) {            
             observerFunction(command)
         }
     }
@@ -33,6 +33,6 @@ export default function createKeyBorardListener(document) {
 
     return {
         subscribe,
-        setPlayerId
+        setCurrentPlayerId
     }
 }

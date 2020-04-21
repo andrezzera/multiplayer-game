@@ -12,7 +12,7 @@ export default function createGame(stage) {
     }
 
     function notifyAll(command) {
-        for(observerFunction in observers) {
+        for(const observerFunction of observers) {
             observerFunction(command)
         }
     }
@@ -40,7 +40,7 @@ export default function createGame(stage) {
             type: 'add-player',
             playerId,
             playerX,
-            PlayerY
+            playerY
         })
     }
 
@@ -81,12 +81,13 @@ export default function createGame(stage) {
     }
 
     function movePlayer (command) {
+
         notifyAll(command)
 
         const acceptedMoves = {
             ArrowUp(player) {
                 if(player.y - 1 >= 0) {
-                    player.y = player.y + 1
+                    player.y = player.y - 1
                 }
             },
 
@@ -98,7 +99,7 @@ export default function createGame(stage) {
 
             ArrowLeft(player) {
                 if(player.x - 1 >= 0) {
-                    player.x = player.x + 1
+                    player.x = player.x - 1
                 }
             },
 
@@ -122,8 +123,7 @@ export default function createGame(stage) {
 
     function checkFruitColision(playerId) {
         const player = state.players[playerId]
-
-        for(fruitId in state.fruits) {
+        for(const fruitId in state.fruits) {
             const fruit = state.fruits[fruitId]
             if(player.x === fruit.x && player.y === fruit.y) {
                 removeFruit({fruitId})
@@ -139,6 +139,7 @@ export default function createGame(stage) {
         removePlayer,
         addFruit,
         removeFruit,
-        state
+        state,
+        movePlayer
     }
 }
