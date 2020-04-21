@@ -1,0 +1,18 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "A realtime game with Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "André Paulo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket-io": "^1.0.0"
+  }
+}
