@@ -1,4 +1,4 @@
-function render(stage, game, requestAnimationFrame, currentPlayerId) {
+export default function render(stage, game, requestAnimationFrame, currentPlayerId) {
 
     const context = stage.getContext('2d')
     context.fillStyle = '#130f40'

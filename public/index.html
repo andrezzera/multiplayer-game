@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title>Javascript Multiplayer Game</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
@@ -12,8 +12,17 @@
             <div id="panel"></div>
         </div>
     </body>
+    <script src="/socket.io/socket.io.js"></script>
     <script type="module">
+        import createGame from './js/game.js'
+        import createKeyboardListener from './js/keyboard.js'
+        import render from './js/render.js'
         const stage = document.getElementById('stage')
 
+        const game = createGame(stage);
+        const keyboardListener = createKeyboardListener(document);
+
+        const currentPlayerId = 'teste';
+        render(stage, game, requestAnimationFrame, currentPlayerId);
     </script>
 </html>

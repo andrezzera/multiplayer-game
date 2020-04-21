@@ -1,4 +1,4 @@
-function keyBorardListener(document) {
+export default function createKeyBorardListener(document) {
 
     const state = {
         playerId: null,
