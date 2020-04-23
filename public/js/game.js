@@ -22,7 +22,7 @@ export default function createGame(stage) {
     }
 
     function start() {
-        const frequency = 3000
+        const frequency = 2500
         setInterval(addFruit, frequency)
     }
 
